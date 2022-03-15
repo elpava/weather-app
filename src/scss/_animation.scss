@@ -1,0 +1,41 @@
+@keyframes thunder {
+  0% {
+    fill: rgb(32, 32, 32);
+  }
+  18% {
+    transform: scale(1.02);
+    fill: rgb(221, 199, 0);
+  }
+  19% {
+    fill: rgb(231, 231, 231);
+  }
+  20%,
+  30% {
+    transform: scale(1);
+    fill: rgb(94, 94, 94);
+  }
+  43% {
+    fill: rgb(65, 65, 65);
+  }
+  50% {
+    fill: rgb(133, 133, 133);
+  }
+  65% {
+    transform: scale(1.04);
+    fill: rgb(221, 199, 0);
+  }
+  67% {
+    fill: rgb(255, 255, 255);
+  }
+  68% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1);
+    fill: rgb(179, 179, 179);
+  }
+  80%,
+  100% {
+    fill: rgb(100, 100, 100);
+  }
+}
