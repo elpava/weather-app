@@ -25,9 +25,12 @@ span {
   background-color: v.$very-light;
   border-radius: v.$main-radius;
   &-container {
+    display: flex;
+    justify-content: space-between;
     width: v.$desktop-box-width;
     height: 371px;
     @include m.center-box;
+    padding-bottom: 5rem;
   }
 }
 .header {
@@ -71,7 +74,6 @@ span {
   }
 }
 .weather-box {
-  position: absolute;
   width: 360px;
   height: 360px;
   background: linear-gradient(to bottom right, v.$box-blue-light, v.$blue 50%);
@@ -81,20 +83,20 @@ span {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-  box-shadow: 9px 9px 15px rgba(v.$blue, 0.5);
+  @include m.weather-box-shadow;
   &-header {
-    align-self: center;
-    justify-self: self-end;
+    display: flex;
+    align-items: center;
     &-icon {
-      position: absolute;
-      left: 1rem;
-      margin-top: -5rem;
+      margin-top: -2.5rem;
     }
     h3 {
       display: inline;
       font-size: 2rem;
       font-weight: bold;
       text-transform: capitalize;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   &-content {
@@ -117,6 +119,7 @@ span {
     }
     & > h4:nth-child(3) {
       font-size: 4rem;
+      font-weight: 700;
       line-height: 1;
       order: 2;
     }
@@ -150,5 +153,47 @@ span {
   }
   .animation {
     animation: thunder 5s ease infinite forwards;
+  }
+}
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 2.2rem;
+  text-align: center;
+  align-items: flex-end;
+  &-day {
+    width: 97px;
+    background: linear-gradient(
+      to bottom right,
+      v.$box-blue-light,
+      v.$blue 50%
+    );
+    border-radius: v.$box-radius;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    h4 {
+      display: flex;
+      justify-content: center;
+      font-size: 2.8rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: -1rem;
+      span {
+        font-size: calc(2.8rem * 0.6);
+      }
+    }
+    span {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    &.active {
+      background: linear-gradient(
+        to bottom right,
+        v.$box-blue-light,
+        v.$dark-blue 50%
+      );
+      @include m.day-box-shadow;
+    }
   }
 }

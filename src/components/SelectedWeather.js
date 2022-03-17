@@ -24,7 +24,7 @@ export default function SelectedWeather() {
     >
       <div className="weather-box-header">
         <WiDayLightning
-          size="12rem"
+          size="11rem"
           className={`weather-box-header-icon ${hover && 'animation'}`}
         />
         <h3>today</h3>
@@ -32,7 +32,10 @@ export default function SelectedWeather() {
       <div className="weather-box-content">
         <h4>day lightning</h4>
         <span>tonight</span>
-        <h4>28°</h4>
+        <h4>
+          28°
+          {/* 28<span>°</span> */}
+        </h4>
         <span>feels like 32°</span>
       </div>
       <div className="weather-box-conditions">

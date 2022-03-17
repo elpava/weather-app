@@ -6,6 +6,7 @@ import './App.scss';
 import Header from './components/Header';
 import Main from './components/Main';
 import SelectedWeather from './components/SelectedWeather';
+import WeekdaysWeather from './components/WeekdaysWeather';
 
 function App() {
   const [weatherdata, setWeatherData] = useState();
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <Main>
         <SelectedWeather />
+        <WeekdaysWeather />
       </Main>
     </React.Fragment>
   );
