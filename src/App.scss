@@ -7,7 +7,7 @@ body {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to bottom right, v.$light-blue, v.$blue);
-  padding-top: 90px;
+  padding-top: 30px;
 }
 h1,
 h2,
@@ -25,12 +25,19 @@ span {
   background-color: v.$very-light;
   border-radius: v.$main-radius;
   &-container {
-    display: flex;
-    justify-content: space-between;
     width: v.$desktop-box-width;
-    height: 371px;
+    height: 431px;
     @include m.center-box;
-    padding-bottom: 5rem;
+    padding-top: 4rem;
+    &-weathers {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-hours {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+    }
   }
 }
 .header {
@@ -79,7 +86,7 @@ span {
   background: linear-gradient(to bottom right, v.$box-blue-light, v.$blue 50%);
   border-radius: v.$box-radius;
   padding: 1.3rem;
-  margin-top: -3rem;
+  margin-top: -7rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
@@ -136,6 +143,8 @@ span {
     justify-content: space-between;
     align-items: flex-start;
     & > div {
+      width: 100%;
+      height: 100%;
       text-align: center;
       width: 75px;
       height: 75px;
@@ -143,16 +152,16 @@ span {
       border-radius: v.$condition-radius;
       padding: 0.5rem;
     }
-    svg {
-      display: block;
-      margin-bottom: 1rem;
+    &-image {
+      margin-bottom: 0.75rem;
+    }
+    img {
+      width: 100%;
+      height: auto;
     }
     span {
       font-weight: 500;
     }
-  }
-  .animation {
-    animation: thunder 5s ease infinite forwards;
   }
 }
 .weekdays {
@@ -160,7 +169,7 @@ span {
   justify-content: space-between;
   column-gap: 2.2rem;
   text-align: center;
-  align-items: flex-end;
+  align-items: flex-start;
   &-day {
     width: 97px;
     background: linear-gradient(
@@ -171,6 +180,8 @@ span {
     border-radius: v.$box-radius;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
     h4 {
       display: flex;
       justify-content: center;
@@ -193,7 +204,59 @@ span {
         v.$box-blue-light,
         v.$dark-blue 50%
       );
+      transform: translateY(-3px);
       @include m.day-box-shadow;
+    }
+  }
+}
+.each-hour {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  background: v.$dark-cyan;
+  padding: 4px 0 0 0;
+  position: relative;
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 2px;
+    height: 65%;
+    transform: translateY(-50%);
+    background-color: #eee;
+    border-radius: 100px;
+  }
+  &:last-child {
+    border-top-right-radius: v.$hour-radius;
+    border-bottom-right-radius: v.$hour-radius;
+  }
+  &:first-child {
+    border-top-left-radius: v.$hour-radius;
+    border-bottom-left-radius: v.$hour-radius;
+  }
+  .hour {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #bababa;
+    margin-top: -1.5rem;
+  }
+  span {
+    display: block;
+  }
+  &:nth-child(1) {
+    color: #000;
+  }
+  svg {
+    color: #eee;
+    box-shadow: -1px -1px 4px #b8b8b8, 1px 1px 3px #202020, 3px 3px 6px #353535;
+    transition: all 0.2s;
+    &:hover {
+      transform: translateY(2px);
+      box-shadow: -3px -3px 6px #b8b8b8a6, 1px 1px 3px #282828,
+        5px 5px 8px #353535;
     }
   }
 }
