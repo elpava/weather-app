@@ -1,31 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {IconContext} from 'react-icons';
-import useFetch from './hooks/useFetch';
+import React from 'react';
 
 import './App.scss';
 import Header from './components/Header';
 import Main from './components/Main';
-import Weathers from './components/Weathers';
+import WeathersWrapper from './components/WeathersWrapper';
 import SelectedWeather from './components/SelectedWeather';
 import WeekdaysWeather from './components/WeekdaysWeather';
-import OnDayHours from './components/OneDayHours';
+import OneDayWrapper from './components/_24HoursWrapper';
 import Hours from './components/Hours';
 
 function App() {
-  const [weatherdata, setWeatherData] = useState();
-  useEffect(() => {}, []);
-
   return (
     <React.Fragment>
       <Header />
       <Main>
-        <Weathers>
+        <WeathersWrapper>
           <SelectedWeather />
           <WeekdaysWeather />
-        </Weathers>
-        <OnDayHours>
+        </WeathersWrapper>
+        <OneDayWrapper>
           <Hours />
-        </OnDayHours>
+        </OneDayWrapper>
       </Main>
     </React.Fragment>
   );

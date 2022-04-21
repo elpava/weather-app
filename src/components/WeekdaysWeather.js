@@ -1,50 +1,49 @@
-import Image from './Image';
+import {useContext, useState} from 'react';
+import moment from 'moment';
+import WeatherContext from '../store/weather-context';
+import Image from './UI-Element/Image';
 
 export default function WeekdaysWeather() {
+  const [active, setActive] = useState();
+  const {_1d, getWeatherCode, setCurrentWeatherIndex} =
+    useContext(WeatherContext);
+  const _6days = _1d?.intervals;
+
+  _6days.forEach((element, i) => {
+    element.index = i;
+  });
+
   return (
     <section className="weekdays">
-      <div className="weekdays-day">
-        <Image fileName={1000} altImage={11} classes="weather icon" />
-        <h4>
-          28<span>°</span>
-        </h4>
-        <span>now</span>
-      </div>
-      <div className="weekdays-day">
-        <Image fileName={1000} altImage={11} classes="weather icon" />
-        <h4>
-          26<span>°</span>
-        </h4>
-        <span>sat</span>
-      </div>
-      <div className="weekdays-day">
-        <Image fileName={1000} altImage={11} classes="weather icon" />
-        <h4>
-          28<span>°</span>
-        </h4>
-        <span>sun</span>
-      </div>
-      <div className="weekdays-day">
-        <Image fileName={1000} altImage={11} classes="weather icon" />
-        <h4>
-          26<span>°</span>
-        </h4>
-        <span>mon</span>
-      </div>
-      <div className="weekdays-day">
-        <Image fileName={1000} altImage={11} classes="weather icon" />
-        <h4>
-          28<span>°</span>
-        </h4>
-        <span>tue</span>
-      </div>
-      <div className="weekdays-day active">
-        <Image fileName={1000} altImage={11} classes="weather icon" />
-        <h4>
-          27<span>°</span>
-        </h4>
-        <span>wed</span>
-      </div>
+      {_6days.map((item, i) => {
+        const {startTime} = item;
+        const {weatherCodeDay, temperature} = item.values;
+        const fileName = getWeatherCode(weatherCodeDay);
+        let weekdayName = moment(startTime).format('ddd');
+
+        return (
+          <div
+            key={i}
+            className={`weekdays-day ${item.index === active ? 'active' : ''}`}
+            onClick={() => {
+              setActive(i);
+              setCurrentWeatherIndex(i);
+            }}
+          >
+            <Image
+              fileName={fileName}
+              png
+              altImage={11}
+              classes="weather icon"
+            />
+            <h4>
+              {Math.trunc(temperature)}
+              <span>°</span>
+            </h4>
+            <span>{weekdayName}</span>
+          </div>
+        );
+      })}
     </section>
   );
 }

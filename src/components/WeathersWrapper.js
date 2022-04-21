@@ -1,3 +1,3 @@
-export default function Weathers({children}) {
+export default function WeathersWrapper({children}) {
   return <div className="main-container-weathers">{children}</div>;
 }

@@ -37,6 +37,11 @@ span {
       display: flex;
       justify-content: space-between;
       margin-top: 2.5rem;
+      h4 {
+        background-color: #353535;
+        border-radius: v.$hour-radius;
+        padding: 0.2rem 0.8rem;
+      }
     }
   }
 }
@@ -213,7 +218,7 @@ span {
   display: inline-block;
   width: 100%;
   text-align: center;
-  background: v.$dark-cyan;
+  background: v.$light-gray;
   padding: 4px 0 0 0;
   position: relative;
   &:not(:last-child)::after {
@@ -224,7 +229,7 @@ span {
     width: 2px;
     height: 65%;
     transform: translateY(-50%);
-    background-color: #eee;
+    background-color: v.$dark-blue;
     border-radius: 100px;
   }
   &:last-child {
@@ -243,20 +248,17 @@ span {
     color: #bababa;
     margin-top: -1.5rem;
   }
+  .temperature {
+    color: #353535;
+  }
   span {
     display: block;
   }
   &:nth-child(1) {
     color: #000;
   }
-  svg {
-    color: #eee;
-    box-shadow: -1px -1px 4px #b8b8b8, 1px 1px 3px #202020, 3px 3px 6px #353535;
-    transition: all 0.2s;
-    &:hover {
-      transform: translateY(2px);
-      box-shadow: -3px -3px 6px #b8b8b8a6, 1px 1px 3px #282828,
-        5px 5px 8px #353535;
-    }
+  img {
+    width: 2rem;
+    height: auto;
   }
 }
