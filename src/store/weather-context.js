@@ -3,8 +3,10 @@ import useFetch from '../hooks/useFetch';
 import {weatherCodes, weatherCodeDay, precipitationType} from './weather-code';
 
 const WeatherContext = createContext({
-  _1h: {},
-  _1d: {},
+  hours: {},
+  days: {},
+  weatherIsLoading: true,
+  error: null,
   weatherCodeDay: {},
   getWeatherCode(item) {},
   currentWeatherIndex: 0,
@@ -13,15 +15,19 @@ const WeatherContext = createContext({
 });
 
 export function WeatherContextProvider({children}) {
+  const [weatherData, setWeatherData] = useState();
   const [currentWeather, setCurrentWeather] = useState(0);
-  // const weatherConditions = useFetch();
-  // localStorage.setItem('weather', JSON.stringify(weatherConditions));
 
-  const data = JSON.parse(localStorage.getItem('weather'));
+  const {isLoading: weatherIsLoading, error, sendRequest} = useFetch();
+
+  useEffect(() => {
+    sendRequest(setWeatherData);
+  }, []);
 
   function getWeatherCode(code) {
     if (`${code}`.length === 5) {
-      let type = wd.weatherCodeDay[code].replace(' ', '_').toLowerCase();
+      let type = wd.weatherCodeDay[code].toLowerCase();
+      type = type.split(' and ').reverse().join('_').replaceAll(' ', '_');
       return `${code}_${type}_large`;
     }
     if (`${code}`.length === 4) {
@@ -34,12 +40,14 @@ export function WeatherContextProvider({children}) {
   }
 
   function selectedWeather(fn) {
-    fn(wd._1d.intervals[currentWeather]);
+    fn(wd.days?.intervals[currentWeather]);
   }
 
   const wd = {
-    _1h: data.data.timelines[0],
-    _1d: data.data.timelines[1],
+    hours: weatherData?.data.timelines[0],
+    days: weatherData?.data.timelines[1],
+    weatherIsLoading,
+    error,
     weatherCodes,
     weatherCodeDay,
     precipitationType,

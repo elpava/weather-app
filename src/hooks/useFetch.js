@@ -1,23 +1,24 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import moment from 'moment';
 
 const apikey = '8yqKcoT2VkntdX0a9AOsiUeNHMTx58FK';
 const location = [35.721822238427805, 51.39032084963884];
 
 const fields = [
+  'cloudCover',
   'precipitationType',
   'sunsetTime',
-  'sunriseTime',
-  'windSpeed',
-  'windDirection',
   'temperature',
   'temperatureApparent',
   'humidity',
+  'sunriseTime',
   'visibility',
   'weatherCode',
   'weatherCodeDay',
   'weatherCodeNight',
   'weatherCodeFullDay',
+  'windSpeed',
+  'windDirection',
 ];
 const units = 'metric';
 // const timesteps = ['current'];
@@ -33,25 +34,32 @@ const options = {method: 'GET', headers: {Accept: 'application/json'}};
 
 const getTimelineURL = `https://api.tomorrow.io/v4/timelines?location=${location}&fields=${fields}&units=${units}&timesteps=${timesteps}&startTime=${startTime}&endTime=${endTime}&timezone=${timezone}&apikey=${apikey}`;
 
-export default function useFetch(props) {
-  const [data, setData] = useState();
+export default function useFetch() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchTimeLine = async function () {
-      try {
-        const result = await fetch(getTimelineURL, options);
+  async function sendRequest(applyData) {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const response = await fetch(getTimelineURL, options);
 
-        const response = await result.json();
-        console.log(response);
+      if (!response) throw new error('Request Faild!');
 
-        setData(response);
-      } catch (error) {
-        console.error('error: ' + error);
-      }
-    };
+      const data = await response.json();
+      console.log(data);
 
-    fetchTimeLine();
-  }, []);
+      applyData(data);
+    } catch (error) {
+      console.error('error: ' + error);
+      setError(error || 'Something went wrong!');
+    }
+    setIsLoading(false);
+  }
 
-  return data;
+  return {
+    isLoading,
+    error,
+    sendRequest,
+  };
 }

@@ -47,7 +47,7 @@ export const weatherCodeDay = {
   42030: 'Mostly Clear and Drizzle',
   42050: 'Mostly Cloudy and Drizzle',
   40000: 'Drizzle',
-  42000: 'Rain Light', // 'Light Rain'
+  42000: 'Light Rain',
   42130: 'Mostly Clear and Light Rain',
   42140: 'Partly Cloudy and Light Rain',
   42150: 'Mostly Cloudy and Light Rain',

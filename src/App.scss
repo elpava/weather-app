@@ -2,6 +2,7 @@
 @use './scss/variables' as v;
 @use './scss/mixin' as m;
 @use './scss/animation';
+@use './scss/utils';
 
 body {
   width: 100%;
@@ -26,9 +27,10 @@ span {
   border-radius: v.$main-radius;
   &-container {
     width: v.$desktop-box-width;
-    height: 431px;
+    min-height: calc(100vh - 281px);
     @include m.center-box;
     padding-top: 4rem;
+    padding-bottom: 0.9rem;
     &-weathers {
       display: flex;
       justify-content: space-between;
@@ -37,11 +39,6 @@ span {
       display: flex;
       justify-content: space-between;
       margin-top: 2.5rem;
-      h4 {
-        background-color: #353535;
-        border-radius: v.$hour-radius;
-        padding: 0.2rem 0.8rem;
-      }
     }
   }
 }
@@ -193,15 +190,16 @@ span {
       font-size: 2.8rem;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: -1rem;
+      margin-bottom: -0.2rem;
       span {
         font-size: calc(2.8rem * 0.6);
       }
     }
-    span {
-      font-size: 1.8rem;
+    &--name {
+      font-size: 1.5rem;
       text-transform: uppercase;
       font-weight: 500;
+      margin-top: 1rem;
     }
     &.active {
       background: linear-gradient(
@@ -247,6 +245,18 @@ span {
     font-size: 0.7rem;
     color: #bababa;
     margin-top: -1.5rem;
+    z-index: 1;
+  }
+  .underline {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 3px;
+    background: #ffabab;
+    border-radius: v.$box-radius;
+    margin-top: -0.6rem;
+    z-index: 0;
   }
   .temperature {
     color: #353535;
