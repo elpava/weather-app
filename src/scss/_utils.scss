@@ -1,7 +1,9 @@
 @use './variables' as v;
 
 .alternate-text {
-  background-color: #353535;
+  height: 100%;
+  background-color: #d8d8d8;
+  color: #222;
   border-radius: v.$hour-radius;
   padding: 0.2rem 0.8rem;
 }

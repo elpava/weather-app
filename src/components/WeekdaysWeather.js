@@ -12,11 +12,10 @@ export default function WeekdaysWeather() {
     element.index = i;
   });
 
-  const widthProperty =
-    days?.intervals.length > 0 ? {} : {width: '50%', alignItems: 'center'};
+  const weekdaysClass = weatherIsLoading ? 'empty' : 'full';
 
   return (
-    <section className="weekdays" style={widthProperty}>
+    <section className={`weekdays ${weekdaysClass}`}>
       {weatherIsLoading ? (
         <h3 className="alternate-text">Today & 5 Days Later...</h3>
       ) : (

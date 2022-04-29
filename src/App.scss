@@ -33,7 +33,12 @@ span {
     padding-bottom: 0.9rem;
     &-weathers {
       display: flex;
-      justify-content: space-between;
+      &.full {
+        justify-content: space-between;
+      }
+      &.empty {
+        column-gap: 2rem;
+      }
     }
     &-hours {
       display: flex;
@@ -89,10 +94,17 @@ span {
   border-radius: v.$box-radius;
   padding: 1.3rem;
   margin-top: -7rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-  @include m.weather-box-shadow;
+  &.full {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+    @include m.weather-box-shadow;
+  }
+  &.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &-header {
     display: flex;
     align-items: center;
@@ -167,11 +179,17 @@ span {
   }
 }
 .weekdays {
-  display: flex;
-  justify-content: space-between;
-  column-gap: 2.2rem;
-  text-align: center;
-  align-items: flex-start;
+  &.full {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 2.2rem;
+    text-align: center;
+    align-items: flex-start;
+  }
+  &.empty {
+    width: calc(100% - 392px);
+    text-align: center;
+  }
   &-day {
     width: 97px;
     background: linear-gradient(

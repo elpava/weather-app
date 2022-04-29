@@ -22,7 +22,7 @@ export default function SelectedWeather() {
 
   function selectedWeatherHandler(data) {
     if (data) {
-      const d = data?.values;
+      const d = data.values;
       currentData = {
         ...currentData,
         fileName: getWeatherCode(d.weatherCodeDay),
@@ -40,8 +40,10 @@ export default function SelectedWeather() {
 
   selectedWeather(selectedWeatherHandler);
 
+  const weatherBoxClass = weatherIsLoading ? 'empty' : 'full';
+
   return (
-    <div className="weather-box">
+    <div className={`weather-box ${weatherBoxClass}`}>
       {weatherIsLoading ? (
         <WiNa size="10rem" color="yellow" />
       ) : (
