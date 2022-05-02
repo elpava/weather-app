@@ -3,11 +3,11 @@ import React from 'react';
 import './App.scss';
 import Header from './components/Header';
 import Main from './components/Main';
-import WeathersWrapper from './components/WeathersWrapper';
-import SelectedWeather from './components/SelectedWeather';
-import WeekdaysWeather from './components/WeekdaysWeather';
-import OneDayWrapper from './components/_24HoursWrapper';
-import Hours from './components/Hours';
+import WeathersWrapper from './components/weatherDays/WeathersWrapper';
+import SelectedWeather from './components/weatherDays/SelectedWeather';
+import WeekdaysWeather from './components/weatherDays/WeekdaysWeather';
+import OneDayWrapper from './components/weatherHours/_24HoursWrapper';
+import Hours from './components/weatherHours/Hours';
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
       <Main>
         <WeathersWrapper>
           <SelectedWeather />
-          <WeekdaysWeather />
         </WeathersWrapper>
         <OneDayWrapper>
           <Hours />

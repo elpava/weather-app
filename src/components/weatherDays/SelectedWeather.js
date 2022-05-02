@@ -1,8 +1,8 @@
 import {useContext, Fragment} from 'react';
-import WeatherContext from '../store/weather-context';
+import WeatherContext from '../../store/weather-context';
 import moment from 'moment';
 import {WiWindy, WiHumidity, WiDaySunnyOvercast, WiNa} from 'react-icons/wi';
-import Image from './UI-Element/Image';
+import Image from '../UI-Element/Image';
 
 export default function SelectedWeather() {
   const {selectedWeather, getWeatherCode, weatherCodeDay, weatherIsLoading} =
@@ -42,6 +42,12 @@ export default function SelectedWeather() {
 
   const weatherBoxClass = weatherIsLoading ? 'empty' : 'full';
 
+  const forecastStyle = currentData.forcast.includes('and')
+    ? {fontSize: '1rem'}
+    : {};
+
+  const dayStyle = currentData.day.length > 8 ? {fontSize: '1.7rem'} : {};
+  console.log('SelectedWeather');
   return (
     <div className={`weather-box ${weatherBoxClass}`}>
       {weatherIsLoading ? (
@@ -60,10 +66,10 @@ export default function SelectedWeather() {
             ) : (
               <WiNa size="10rem" color="yellow" />
             )}
-            <h3>{currentData.day}</h3>
+            <h3 style={dayStyle}>{currentData.day}</h3>
           </div>
           <div className="weather-box-content">
-            <h4>{currentData.forcast}</h4>
+            <h4 style={forecastStyle}>{currentData.forcast}</h4>
             <span>visibility {currentData.visibility} KM</span>
             <h4>{currentData.temperature}°</h4>
             <span>feels like {currentData.temperatureApparent}°</span>
