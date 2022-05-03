@@ -4,7 +4,7 @@ import {FaSatelliteDish} from 'react-icons/fa';
 
 export default function Header() {
   const [locationName, setLocationName] = useState('');
-  const {getLocation, coordinates} = useContext(WeatherContext);
+  const {setNewLocation} = useContext(WeatherContext);
 
   function inputLocationHandler(e) {
     setLocationName(e.target.value);
@@ -12,10 +12,10 @@ export default function Header() {
 
   function submitHandler(e) {
     e.preventDefault();
-    getLocation(locationName);
+    setNewLocation(locationName);
     setLocationName('');
   }
-  console.log('Header');
+  // console.log('Header');
   return (
     <header className="header">
       <div className="header-container">

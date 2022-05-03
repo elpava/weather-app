@@ -31,8 +31,10 @@ const WeatherContext = createContext({
 export function WeatherContextProvider({children}) {
   const [geoCollectionData, setGeoCollectionData] = useState();
   const [location, setLocation] = useState('Tehran');
-  const [weatherData, setWeatherData] = useState();
-  const [coordinates, setCoordinates] = useState([
+  const [weatherData, setWeatherData] = useState(
+    JSON.parse(localStorage.getItem('weather'))
+  );
+  const [queriedCoordinates, setQueriedCoordinates] = useState([
     35.721822238427805, 51.39032084963884,
   ]);
   const [currentWeather, setCurrentWeather] = useState(0);
@@ -49,8 +51,7 @@ export function WeatherContextProvider({children}) {
   };
 
   const WEATHER_API_KEY = '8yqKcoT2VkntdX0a9AOsiUeNHMTx58FK';
-  // const weatherLocation = [35.721822238427805, 51.39032084963884];
-  const weatherLocation = coordinates;
+  const weatherLocation = queriedCoordinates;
 
   const fields = [
     'cloudCover',
@@ -84,10 +85,11 @@ export function WeatherContextProvider({children}) {
     method: 'GET',
     headers: {Accept: 'application/json'},
   };
-
   useEffect(() => {
-    sendRequest(getTimelineURL, weatherMethodOptions, setWeatherData);
-  }, []);
+    if (typeof queriedCoordinates[0] === 'number') {
+      sendRequest(getTimelineURL, weatherMethodOptions, setWeatherData);
+    }
+  }, [queriedCoordinates]);
 
   useEffect(() => {
     sendRequest(
@@ -95,7 +97,12 @@ export function WeatherContextProvider({children}) {
       coordinatesMethodOptions,
       setGeoCollectionData
     );
+    // localStorage.setItem('weather', JSON.stringify(weatherData));
   }, [location]);
+
+  useEffect(() => {
+    setNewCoordinates();
+  }, [geoCollectionData]);
 
   function getWeatherCode(code) {
     if (`${code}`.length === 5) {
@@ -122,14 +129,21 @@ export function WeatherContextProvider({children}) {
     fn(wd.days?.intervals[currentWeather]);
   }
 
-  function getLocation(locationName) {
+  function setNewLocation(locationName) {
     setLocation(locationName);
   }
-  console.log('--WeatherContext');
+
+  function setNewCoordinates() {
+    setQueriedCoordinates(prevState => [
+      geoCollectionData?.features[0].center[1],
+      geoCollectionData?.features[0].center[0],
+    ]);
+  }
+  // console.log('--WeatherContext');
   const wd = {
     geoCollectionData,
-    coordinates: geoCollectionData?.features[0].center,
-    getLocation,
+    queriedCoordinates,
+    setNewLocation,
     hours: weatherData?.data.timelines[0],
     days: weatherData?.data.timelines[1],
     weatherIsLoading,

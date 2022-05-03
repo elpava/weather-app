@@ -41,13 +41,11 @@ export default function SelectedWeather() {
   selectedWeather(selectedWeatherHandler);
 
   const weatherBoxClass = weatherIsLoading ? 'empty' : 'full';
-
   const forecastStyle = currentData.forcast.includes('and')
     ? {fontSize: '1rem'}
     : {};
-
   const dayStyle = currentData.day.length > 8 ? {fontSize: '1.7rem'} : {};
-  console.log('SelectedWeather');
+  // console.log('SelectedWeather');
   return (
     <div className={`weather-box ${weatherBoxClass}`}>
       {weatherIsLoading ? (

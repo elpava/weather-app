@@ -8,7 +8,7 @@ body {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to bottom right, v.$light-blue, v.$blue);
-  padding-top: 30px;
+  // padding-top: 30px;
 }
 h1,
 h2,
@@ -22,7 +22,7 @@ span {
 }
 .main {
   width: 100%;
-  margin-top: 97px;
+  margin-top: 95px;
   background-color: v.$very-light;
   border-radius: v.$main-radius;
   &-container {
@@ -47,11 +47,21 @@ span {
     }
   }
 }
+.background {
+  width: 100%;
+  min-height: 100vh;
+  background: url(./assets/big-blue-circles.svg) no-repeat;
+  background-size: 45%;
+  background-position: 820px -80px;
+  position: absolute;
+  z-index: -1;
+}
 .header {
   width: 100%;
   &-container {
     width: v.$desktop-box-width;
     @include m.center-box;
+    padding-top: 30px;
     &-input {
       width: 50%;
     }

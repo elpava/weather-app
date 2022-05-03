@@ -14,7 +14,7 @@ export default function WeathersWrapper({children}) {
 
   const weekdaysClass = weatherIsLoading ? 'empty' : 'full';
   const containerWeathersClass = weatherIsLoading ? 'empty' : 'full';
-  console.log('WeathersWrapper');
+  // console.log('WeathersWrapper');
 
   return (
     <div className={`main-container-weathers ${containerWeathersClass}`}>

@@ -7,7 +7,7 @@ export default function WeekdaysWeather({
   activeClass,
   onClick,
 }) {
-  console.log('WeekdaysWeather');
+  // console.log('WeekdaysWeather');
   return (
     <div className={`weekdays-day ${activeClass}`} onClick={onClick}>
       <Image

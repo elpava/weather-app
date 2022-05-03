@@ -8,7 +8,7 @@ export default memo(function Hours({
   temperature,
   fileName,
 }) {
-  console.log('Hours');
+  // console.log('Hours');
   return (
     <div className="each-hour">
       <span className="hour">

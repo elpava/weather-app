@@ -5,7 +5,7 @@ import Hours from './Hours';
 
 export default function OneDayWrapper() {
   const {getWeatherCode, hours, weatherIsLoading} = useContext(WeatherContext);
-  console.log('OneDayWrapper');
+  // console.log('OneDayWrapper');
 
   return (
     <div className="main-container-hours">
