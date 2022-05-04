@@ -16,6 +16,8 @@ const WeatherContext = createContext({
   geoCollectionData: {},
   coordinates: [],
   getLocation(locationName) {},
+  location: '',
+  placeName: '',
   hours: {},
   days: {},
   weatherIsLoading: true,
@@ -34,9 +36,10 @@ export function WeatherContextProvider({children}) {
   const [weatherData, setWeatherData] = useState(
     JSON.parse(localStorage.getItem('weather'))
   );
-  const [queriedCoordinates, setQueriedCoordinates] = useState([
-    35.721822238427805, 51.39032084963884,
-  ]);
+  const [queriedCoordinates, setQueriedCoordinates] = useState({
+    coordinates: [35.721822238427805, 51.39032084963884],
+    initialFetch: true,
+  });
   const [currentWeather, setCurrentWeather] = useState(0);
   const {isLoading: weatherIsLoading, error, sendRequest} = useFetch();
 
@@ -51,7 +54,7 @@ export function WeatherContextProvider({children}) {
   };
 
   const WEATHER_API_KEY = '8yqKcoT2VkntdX0a9AOsiUeNHMTx58FK';
-  const weatherLocation = queriedCoordinates;
+  const weatherLocation = queriedCoordinates.coordinates;
 
   const fields = [
     'cloudCover',
@@ -86,17 +89,18 @@ export function WeatherContextProvider({children}) {
     headers: {Accept: 'application/json'},
   };
   useEffect(() => {
-    if (typeof queriedCoordinates[0] === 'number') {
-      sendRequest(getTimelineURL, weatherMethodOptions, setWeatherData);
+    if (typeof queriedCoordinates.coordinates[0] === 'number') {
+      // sendRequest(getTimelineURL, weatherMethodOptions, setWeatherData);
     }
   }, [queriedCoordinates]);
 
   useEffect(() => {
-    sendRequest(
-      getCoordinatesURL,
-      coordinatesMethodOptions,
-      setGeoCollectionData
-    );
+    if (!queriedCoordinates.initialFetch)
+      sendRequest(
+        getCoordinatesURL,
+        coordinatesMethodOptions,
+        setGeoCollectionData
+      );
     // localStorage.setItem('weather', JSON.stringify(weatherData));
   }, [location]);
 
@@ -134,16 +138,24 @@ export function WeatherContextProvider({children}) {
   }
 
   function setNewCoordinates() {
-    setQueriedCoordinates(prevState => [
-      geoCollectionData?.features[0].center[1],
-      geoCollectionData?.features[0].center[0],
-    ]);
+    setQueriedCoordinates(prevState => {
+      return {
+        ...prevState,
+        coordinates: [
+          geoCollectionData?.features[0].center[1],
+          geoCollectionData?.features[0].center[0],
+        ],
+        initialFetch: false,
+      };
+    });
   }
   // console.log('--WeatherContext');
   const wd = {
     geoCollectionData,
     queriedCoordinates,
     setNewLocation,
+    location,
+    placeName: geoCollectionData?.features[0].place_name || 'iran',
     hours: weatherData?.data.timelines[0],
     days: weatherData?.data.timelines[1],
     weatherIsLoading,

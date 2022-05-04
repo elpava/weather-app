@@ -60,13 +60,39 @@ span {
   width: 100%;
   &-container {
     width: v.$desktop-box-width;
+    display: flex;
     @include m.center-box;
     padding-top: 30px;
-    &-input {
+    &-search,
+    &-location {
       width: 50%;
     }
-    h1 {
-      font-size: 4rem;
+    &-search {
+      h1 {
+        font-size: 4rem;
+      }
+    }
+    &-location {
+      text-align: center;
+      position: relative;
+      h1 {
+        position: absolute;
+        display: block;
+        width: 100%;
+        font-size: 6.2rem;
+        text-transform: capitalize;
+        letter-spacing: -10px;
+        text-align: center;
+        color: #000;
+        text-shadow: 2px 4px 0 #fff, 4px 6px 0 #adadad, 6px 8px 0 #3e3e3e;
+        opacity: 0.4;
+      }
+      h3 {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-transform: capitalize;
+      }
     }
   }
   &-input {
