@@ -28,9 +28,9 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-console": [
-        1
-      ]
+      "no-console": "warn",
+      "no-inline-comments": "warn",
+      "lines-around-comment": "warn"
     }
   },
   "browserslist": {

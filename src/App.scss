@@ -8,7 +8,6 @@ body {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to bottom right, v.$light-blue, v.$blue);
-  // padding-top: 30px;
 }
 h1,
 h2,
@@ -57,15 +56,18 @@ span {
   z-index: -1;
 }
 .header {
-  width: 100%;
   &-container {
-    width: v.$desktop-box-width;
+    max-width: v.$desktop-box-width;
+    width: 95%;
     display: flex;
+    flex-wrap: wrap;
     @include m.center-box;
     padding-top: 30px;
     &-search,
     &-location {
-      width: 50%;
+      width: 583px;
+      text-align: center;
+      flex-grow: 1;
     }
     &-search {
       h1 {
@@ -73,25 +75,20 @@ span {
       }
     }
     &-location {
-      text-align: center;
-      position: relative;
       h1 {
-        position: absolute;
-        display: block;
-        width: 100%;
-        font-size: 6.2rem;
+        font-size: 6.5rem;
+        font-weight: 800;
         text-transform: capitalize;
-        letter-spacing: -10px;
+        letter-spacing: -12px;
         text-align: center;
         color: #000;
         text-shadow: 2px 4px 0 #fff, 4px 6px 0 #adadad, 6px 8px 0 #3e3e3e;
         opacity: 0.4;
       }
       h3 {
-        position: absolute;
-        right: 0;
-        bottom: 0;
         text-transform: capitalize;
+        text-align: right;
+        margin-bottom: -2rem;
       }
     }
   }
