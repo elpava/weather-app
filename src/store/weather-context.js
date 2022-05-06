@@ -1,14 +1,5 @@
 import {createContext, useEffect, useState} from 'react';
 import useFetch from '../hooks/use-http';
-// import {
-//   getTimelineURL,
-//   options as weatherRequestMethodOptions,
-// } from '../store/weather-api-config';
-// import {
-//   getCoordinatesURL,
-//   options as coordinatesMethodOptions,
-//   requestLocation,
-// } from './coordinates-api-config';
 import moment from 'moment';
 import {weatherCodes, weatherCodeDay, precipitationType} from './weather-code';
 
@@ -90,7 +81,7 @@ export function WeatherContextProvider({children}) {
   };
   useEffect(() => {
     if (typeof queriedCoordinates.coordinates[0] === 'number') {
-      // sendRequest(getTimelineURL, weatherMethodOptions, setWeatherData);
+      sendRequest(getTimelineURL, weatherMethodOptions, setWeatherData);
     }
   }, [queriedCoordinates]);
 
