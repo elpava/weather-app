@@ -39,8 +39,8 @@ span {
     }
     &-weathers {
       display: flex;
-      flex-wrap: wrap;
       @include m.responsive(laptop) {
+        flex-direction: column;
         row-gap: 2rem;
       }
       @include m.responsive(mobile) {
@@ -175,7 +175,8 @@ span {
   margin-top: -7rem;
   @include m.transition(transform);
   @include m.responsive(mobile) {
-    width: 290px;
+    max-width: 290px;
+    width: 95%;
     height: auto;
     @include m.center-box;
     margin-top: -3rem;
@@ -185,8 +186,13 @@ span {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
     @include m.weather-box-shadow;
+    @include m.responsive(laptop) {
+      margin-left: auto;
+      margin-right: auto;
+    }
     @include m.responsive(mobile) {
       grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+      padding-bottom: 3rem;
     }
   }
   &.empty {
@@ -224,6 +230,7 @@ span {
     @include m.responsive(mobile) {
       grid-template-columns: 1.5fr 1fr;
       grid-template-rows: 1fr 1fr;
+      column-gap: 20px;
       align-items: center;
     }
     & > h4:nth-child(1) {
@@ -270,8 +277,7 @@ span {
     justify-content: space-between;
     align-items: flex-start;
     @include m.responsive(mobile) {
-      margin-top: -2rem;
-      padding-bottom: 5rem;
+      // margin-top: -2rem;
     }
     & > div {
       width: 75px;
