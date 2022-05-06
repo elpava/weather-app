@@ -1,5 +1,6 @@
 import {useContext, Fragment} from 'react';
 import WeatherContext from '../../store/weather-context';
+import WeatherField from './WeatherField';
 import moment from 'moment';
 import {WiWindy, WiHumidity, WiDaySunnyOvercast, WiNa} from 'react-icons/wi';
 import Image from '../UI-Element/Image';
@@ -44,7 +45,6 @@ export default function SelectedWeather() {
   const forecastStyle = currentData.forcast.includes('and')
     ? {fontSize: '1rem'}
     : {};
-  const dayStyle = currentData.day.length > 8 ? {fontSize: '1.7rem'} : {};
   // console.log('SelectedWeather');
   return (
     <div className={`weather-box ${weatherBoxClass}`}>
@@ -64,7 +64,7 @@ export default function SelectedWeather() {
             ) : (
               <WiNa size="10rem" color="yellow" />
             )}
-            <h3 style={dayStyle}>{currentData.day}</h3>
+            <h3>{currentData.day}</h3>
           </div>
           <div className="weather-box-content">
             <h4 style={forecastStyle}>{currentData.forcast}</h4>
@@ -73,29 +73,21 @@ export default function SelectedWeather() {
             <span>feels like {currentData.temperatureApparent}°</span>
           </div>
           <div className="weather-box-conditions">
-            <div className="weather-box-conditions--left">
-              <div className="weather-box-conditions-image">
-                <WiHumidity size="100%" />
-              </div>
-              <span>{currentData.humidity}%</span>
-            </div>
-            <div className="weather-box-conditions--middle">
-              <div className="weather-box-conditions-image">
-                <WiWindy size="100%" />
-              </div>
-              <span>
-                {currentData.windSpeed}
-                <span style={{fontSize: '0.8rem', marginLeft: '2px'}}>
-                  km/h
-                </span>
-              </span>
-            </div>
-            <div className="weather-box-conditions--right">
-              <div className="weather-box-conditions-image">
-                <WiDaySunnyOvercast size="100%" />
-              </div>
-              <span>{currentData.cloudCover}%</span>
-            </div>
+            <WeatherField
+              classes="--left"
+              icon={<WiHumidity size="100%" />}
+              field={{value: currentData.humidity, unit: '%'}}
+            />
+            <WeatherField
+              classes="--middle"
+              icon={<WiWindy size="100%" />}
+              field={{value: currentData.windSpeed, unit: 'km/h'}}
+            />
+            <WeatherField
+              classes="--right"
+              icon={<WiDaySunnyOvercast size="100%" />}
+              field={{value: currentData.cloudCover, unit: '%'}}
+            />
           </div>
         </Fragment>
       )}

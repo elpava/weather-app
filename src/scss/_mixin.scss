@@ -1,3 +1,4 @@
+@use 'sass:meta';
 @use './variables' as v;
 
 @mixin center-box {
@@ -11,4 +12,28 @@
 
 @mixin day-box-shadow {
   box-shadow: 9px 9px 15px rgba(v.$dark-blue-shadow, 0.5);
+}
+
+@mixin responsive($size) {
+  @if $size == mobile {
+    @media (max-width: v.$mobile-width) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media (max-width: v.$tablet-width) {
+      @content;
+    }
+  } @else if $size == laptop {
+    @media (max-width: v.$laptop-width) {
+      @content;
+    }
+  } @else if $size == desktop {
+    @media (max-width: v.$laptop-L-width) {
+      @content;
+    }
+  }
+}
+
+@mixin transition($item, $miliseconds: 0.5) {
+  transition: #{$item} #{$miliseconds}s ease-in;
 }

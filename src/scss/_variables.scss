@@ -14,13 +14,16 @@ $light-blue-shadow: hsla(218, 100%, 79%, 0.5);
 $dark-blue-shadow: rgba($dark-blue, 0.5);
 
 $desktop-box-width: 1166px;
+$maximum-width: 95%;
 
 $input-radius: 15px;
-$main-radius: 50px 50px 0 0;
+$main-radius-desktop: 50px 50px 0 0;
+$main-radius-mobile: 25px 25px 0 0;
 $box-radius: 25px;
 $condition-radius: 17px;
 $hour-radius: 10px;
 
-$screen-width-desktop: 1024px;
-$screen-width-tablet: 768px;
-$screen-width-mobile: 375px;
+$laptop-L-width: 1441px;
+$laptop-width: 1025px;
+$tablet-width: 769px;
+$mobile-width: 426px;
