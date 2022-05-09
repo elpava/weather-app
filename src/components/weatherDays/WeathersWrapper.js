@@ -17,6 +17,7 @@ export default function WeathersWrapper({children}) {
   const containerWeathersClass = weatherIsLoading ? 'empty' : 'full';
 
   const WeekdaysWeatherComponents = () => {
+    if (!days) return null;
     return days?.intervals.map((item, i) => {
       const {startTime} = item;
       const {weatherCodeDay, temperature} = item.values;

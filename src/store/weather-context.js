@@ -24,9 +24,8 @@ const WeatherContext = createContext({
 export function WeatherContextProvider({children}) {
   const [geoCollectionData, setGeoCollectionData] = useState();
   const [location, setLocation] = useState('Tehran');
-  const [weatherData, setWeatherData] = useState(
-    JSON.parse(localStorage.getItem('weather'))
-  );
+  const [weatherData, setWeatherData] = useState(undefined);
+  // JSON.parse(localStorage.getItem('weather'))
   const [queriedCoordinates, setQueriedCoordinates] = useState({
     coordinates: [35.721822238427805, 51.39032084963884],
     initialFetch: true,
@@ -64,7 +63,6 @@ export function WeatherContextProvider({children}) {
     'windDirection',
   ];
   const units = 'metric';
-  // const timesteps = ['current'];
   const timesteps = ['1h', '1d'];
 
   const now = moment.utc();
