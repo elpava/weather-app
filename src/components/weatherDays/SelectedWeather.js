@@ -6,8 +6,12 @@ import {WiWindy, WiHumidity, WiDaySunnyOvercast, WiNa} from 'react-icons/wi';
 import Image from '../UI-Element/Image';
 
 export default function SelectedWeather() {
-  const {selectedWeather, getWeatherCode, weatherCodeDay, weatherIsLoading} =
-    useContext(WeatherContext);
+  const {
+    selectedWeather,
+    weatherCodeDayFileNames,
+    weatherCodeDay,
+    weatherIsLoading,
+  } = useContext(WeatherContext);
 
   let currentData = {
     fileName: null,
@@ -26,7 +30,7 @@ export default function SelectedWeather() {
       const d = data.values;
       currentData = {
         ...currentData,
-        fileName: getWeatherCode(d.weatherCodeDay),
+        fileName: weatherCodeDayFileNames[d.weatherCodeDay],
         day: moment(data?.startTime).format('dddd'),
         forcast: weatherCodeDay[d.weatherCodeDay],
         visibility: Math.trunc(d.visibility),

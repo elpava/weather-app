@@ -4,7 +4,7 @@ import moment from 'moment';
 import Hours from './Hours';
 
 export default function OneDayWrapper() {
-  const {getWeatherCode, hours, weatherIsLoading} = useContext(WeatherContext);
+  const {weatherCodes, hours, weatherIsLoading} = useContext(WeatherContext);
   // console.log('OneDayWrapper');
   return (
     <div className="main-container-hours">
@@ -16,7 +16,7 @@ export default function OneDayWrapper() {
           const {weatherCode, temperature} = item.values;
           const hour = `${moment(startTime).hour()}:00`.padStart(5, '0');
           const isToday = moment(startTime).calendar().includes('Today');
-          const fileName = getWeatherCode(weatherCode);
+          const fileName = weatherCodes[weatherCode];
 
           return (
             <Hours

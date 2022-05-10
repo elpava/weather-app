@@ -1,7 +1,11 @@
 import {createContext, useEffect, useState} from 'react';
 import useFetch from '../hooks/use-http';
 import moment from 'moment';
-import {weatherCodes, weatherCodeDay, precipitationType} from './weather-code';
+import {
+  weatherCodes,
+  weatherCodeDay,
+  weatherCodeDayFileNames,
+} from './weather-code';
 
 const WeatherContext = createContext({
   geoCollectionData: {},
@@ -19,6 +23,7 @@ const WeatherContext = createContext({
   selectedWeather(fn) {},
   weatherCodeDay,
   weatherCodes,
+  weatherCodeDayFileNames,
 });
 
 export function WeatherContextProvider({children}) {
@@ -155,7 +160,8 @@ export function WeatherContextProvider({children}) {
     selectedWeather,
     weatherCodes,
     weatherCodeDay,
-    precipitationType,
+
+    weatherCodeDayFileNames,
   };
 
   return (

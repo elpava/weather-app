@@ -4,9 +4,13 @@ import WeatherContext from '../../store/weather-context';
 import SelectedWeather from './SelectedWeather';
 import WeekdaysWeather from './WeekdaysWeather';
 
-export default function WeathersWrapper({children}) {
-  const {days, weatherIsLoading, getWeatherCode, setCurrentWeatherIndex} =
-    useContext(WeatherContext);
+export default function WeathersWrapper() {
+  const {
+    days,
+    weatherIsLoading,
+    weatherCodeDayFileNames,
+    setCurrentWeatherIndex,
+  } = useContext(WeatherContext);
   const [active, setActive] = useState(0);
 
   days?.intervals.forEach((element, i) => {
@@ -21,7 +25,7 @@ export default function WeathersWrapper({children}) {
     return days?.intervals.map((item, i) => {
       const {startTime} = item;
       const {weatherCodeDay, temperature} = item.values;
-      const fileName = getWeatherCode(weatherCodeDay);
+      const fileName = weatherCodeDayFileNames[weatherCodeDay];
       const weekdayName = i === 0 ? 'Today' : moment(startTime).format('ddd');
 
       return (
