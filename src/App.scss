@@ -4,6 +4,12 @@
 @use './scss/animation';
 @use './scss/utils';
 
+html {
+  @include m.responsive(tablet) {
+    font-size: 80% !important;
+  }
+}
+
 body {
   width: 100%;
   min-height: 100vh;
@@ -39,18 +45,13 @@ span {
     }
     &-weathers {
       display: flex;
+      justify-content: space-between;
       @include m.responsive(laptop) {
         flex-direction: column;
         row-gap: 2rem;
       }
       @include m.responsive(mobile) {
         // row-gap: 2rem;
-      }
-      &.full {
-        justify-content: space-between;
-      }
-      &.empty {
-        column-gap: 2rem;
       }
     }
     &-hours {
@@ -167,38 +168,28 @@ span {
   }
 }
 .weather-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
   width: 360px;
   height: 360px;
   background: linear-gradient(to bottom right, v.$box-blue-light, v.$blue 50%);
   border-radius: v.$box-radius;
   padding: 1.3rem;
   margin-top: -7rem;
+  @include m.weather-box-shadow;
   @include m.transition(transform);
+  @include m.responsive(laptop) {
+    @include m.center-box;
+  }
   @include m.responsive(mobile) {
+    grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+    padding-bottom: 3rem;
     max-width: 290px;
     width: 95%;
     height: auto;
     @include m.center-box;
     margin-top: -3rem;
-  }
-  &.full {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-    @include m.weather-box-shadow;
-    @include m.responsive(laptop) {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @include m.responsive(mobile) {
-      grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
-      padding-bottom: 3rem;
-    }
-  }
-  &.empty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   &-header {
     display: flex;
@@ -305,30 +296,24 @@ span {
   }
 }
 .weekdays {
-  &.full {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 2.2rem;
-    text-align: center;
-    align-items: flex-start;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-    @include m.responsive(mobile) {
-      column-gap: 1.5rem;
-      overflow-x: auto;
-      padding-top: 0.5rem;
-      padding-bottom: 1.5rem;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 40px;
-      padding-right: 1.5rem;
-    }
+  display: flex;
+  justify-content: space-between;
+  column-gap: 2.2rem;
+  text-align: center;
+  align-items: flex-start;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  @include m.responsive(mobile) {
+    column-gap: 1.5rem;
+    overflow-x: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 40px;
+    padding-right: 1.5rem;
   }
-  &.full::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
-  }
-  &.empty {
-    width: calc(100% - 392px);
-    text-align: center;
   }
   &-day {
     width: 97px;

@@ -1,5 +1,5 @@
-export default function WeatherField({classes, icon, field}) {
-  const {value, unit} = field;
+export default function InfoBox({ classes, icon, field }) {
+  const { value, unit } = field;
   // console.log('WeatherField');
   return (
     <div className={`weather-box-conditions${classes}`}>
