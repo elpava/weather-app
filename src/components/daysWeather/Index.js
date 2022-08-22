@@ -6,7 +6,8 @@ import SelectedDay from './SelectedDay';
 import Days from './Days';
 
 export default function DaysWrapper() {
-  const { data } = useContext(NewWeatherContext);
+  const { data: weatherData } = useContext(NewWeatherContext);
+  const { data } = weatherData;
   const [selectedItem, setSelcetedItem] = useState(0);
 
   if (!data) return <h3 className="alternate-text">Today & 5 Days Later...</h3>;

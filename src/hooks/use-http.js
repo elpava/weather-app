@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function useFetch() {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,11 +13,11 @@ export default function useFetch() {
       if (!response) throw new error('Request Faild!');
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       applyData(data);
     } catch (error) {
-      console.error('error: ' + error);
+      // console.error('error: ' + error);
       setError(error || 'Something went wrong!');
     }
     setIsLoading(false);

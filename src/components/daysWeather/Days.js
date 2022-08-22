@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import { weatherCodeDayFileNames } from '../../store/weather-code';
 
-import Image from '../UI-Element/Image';
+import Image from '../ui/Image';
 
 export default function Days({ data, onSelectedWeather, activeWeather }) {
   const result = data.map((day, i) => {

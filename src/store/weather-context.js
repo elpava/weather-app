@@ -1,4 +1,4 @@
-import {createContext, useEffect, useState} from 'react';
+import { createContext, useEffect, useState } from 'react';
 import useFetch from '../hooks/use-http';
 import moment from 'moment';
 import {
@@ -26,7 +26,7 @@ const WeatherContext = createContext({
   weatherCodeDayFileNames,
 });
 
-export function WeatherContextProvider({children}) {
+export function WeatherContextProvider({ children }) {
   const [geoCollectionData, setGeoCollectionData] = useState();
   const [location, setLocation] = useState('Tehran');
   const [weatherData, setWeatherData] = useState(undefined);
@@ -36,7 +36,7 @@ export function WeatherContextProvider({children}) {
     initialFetch: true,
   });
   const [currentWeather, setCurrentWeather] = useState(0);
-  const {isLoading: weatherIsLoading, error, sendRequest} = useFetch();
+  const { isLoading: weatherIsLoading, error, sendRequest } = useFetch();
 
   const COORDINATE_API_KEY =
     'pk.eyJ1IjoiaGFkaWttYW4iLCJhIjoiY2twc2MybWt5MTF6czJxczR1ZGNqd3N6NSJ9.UA1qAc3pGYraATf9kGt5DQ';
@@ -45,7 +45,7 @@ export function WeatherContextProvider({children}) {
 
   const coordinatesMethodOptions = {
     method: 'GET',
-    headers: {Accept: 'application/json'},
+    headers: { Accept: 'application/json' },
   };
 
   const WEATHER_API_KEY = '8yqKcoT2VkntdX0a9AOsiUeNHMTx58FK';
@@ -80,7 +80,7 @@ export function WeatherContextProvider({children}) {
 
   const weatherMethodOptions = {
     method: 'GET',
-    headers: {Accept: 'application/json'},
+    headers: { Accept: 'application/json' },
   };
   useEffect(() => {
     if (typeof queriedCoordinates.coordinates[0] === 'number') {
@@ -89,13 +89,13 @@ export function WeatherContextProvider({children}) {
   }, [queriedCoordinates]);
 
   useEffect(() => {
-    if (!queriedCoordinates.initialFetch)
-      sendRequest(
-        getCoordinatesURL,
-        coordinatesMethodOptions,
-        setGeoCollectionData
-      );
-    // localStorage.setItem('weather', JSON.stringify(weatherData));
+    // if (!queriedCoordinates.initialFetch)
+    //   sendRequest(
+    //     getCoordinatesURL,
+    //     coordinatesMethodOptions,
+    //     setGeoCollectionData
+    //   );
+    localStorage.setItem('weather', JSON.stringify(weatherData));
   }, [location]);
 
   useEffect(() => {

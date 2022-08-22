@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {WeatherContextProvider} from './store/weather-context';
+import { WeatherProvider } from './store/new-context';
+
 import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <WeatherContextProvider>
+    <WeatherProvider>
       <App />
-    </WeatherContextProvider>
+    </WeatherProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

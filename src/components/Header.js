@@ -1,10 +1,12 @@
-import {useContext, useState} from 'react';
-import WeatherContext from '../store/weather-context';
-import {FaSatelliteDish} from 'react-icons/fa';
+import { useContext, useState } from 'react';
+import WeatherContext from '../store/new-context';
+
+import { FaSatelliteDish } from 'react-icons/fa';
 
 export default function Header() {
   const [inputedLocationName, setInputedLocationName] = useState('');
-  const {location, placeName, setNewLocation} = useContext(WeatherContext);
+  const { requestedLocation, placeName, setRequestedLocation } =
+    useContext(WeatherContext);
   const locationName = [...new Set(placeName.split(', '))].join(' - ');
 
   function inputLocationHandler(e) {
@@ -13,7 +15,7 @@ export default function Header() {
 
   function submitHandler(e) {
     e.preventDefault();
-    setNewLocation(inputedLocationName);
+    setRequestedLocation(inputedLocationName);
     setInputedLocationName('');
   }
   // console.log('Header');
@@ -39,7 +41,7 @@ export default function Header() {
           </form>
         </div>
         <div className="header-container-location">
-          <h1 className="locationName">{location}</h1>
+          <h1 className="locationName">{requestedLocation}</h1>
           <h3>{locationName}</h3>
         </div>
       </div>

@@ -1,22 +1,21 @@
-import React from 'react';
-
-import './App.scss';
-import BackgroundShape from './components/UI-Element/BackgroundShape';
+import BackgroundShape from './components/ui/BackgroundShape';
 import Header from './components/Header';
 import Main from './components/Main';
-import WeathersWrapper from './components/weatherDays/WeathersWrapper';
-import OneDayWrapper from './components/weatherHours/Full24HoursWrapper';
+import DaysWrapper from './components/daysWeather/Index';
+import FullDayWrapper from './components/hourlyWeather/Index';
+
+import './App.scss';
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <BackgroundShape />
       <Header />
       <Main>
-        <WeathersWrapper />
-        <OneDayWrapper />
+        <DaysWrapper />
+        <FullDayWrapper />
       </Main>
-    </React.Fragment>
+    </>
   );
 }
 

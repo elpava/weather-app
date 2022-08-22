@@ -7,7 +7,7 @@ import {
 } from '../../store/weather-code';
 
 import WeatherField from './InfoBox';
-import Image from '../UI-Element/Image';
+import Image from '../ui/Image';
 import InfoBox from './InfoBox';
 
 export default function SelectedDay({ data }) {

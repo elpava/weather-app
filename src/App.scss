@@ -380,17 +380,6 @@ span {
     padding: 5px;
     scroll-snap-align: start;
   }
-  &:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 2px;
-    height: 65%;
-    transform: translateY(-50%);
-    background-color: v.$dark-blue;
-    border-radius: 100px;
-  }
   &:last-child {
     border-top-right-radius: v.$hour-radius;
     border-bottom-right-radius: v.$hour-radius;
