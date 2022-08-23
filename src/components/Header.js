@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import WeatherContext from '../store/new-context';
+import WeatherContext from '../store/weather-context';
 
 import { FaSatelliteDish } from 'react-icons/fa';
 

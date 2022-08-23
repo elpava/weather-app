@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { WeatherProvider } from './store/new-context';
+import { WeatherProvider } from './store/weather-context';
 
 import './index.scss';
 

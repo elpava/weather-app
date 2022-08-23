@@ -10,14 +10,14 @@ export default function useFetch() {
       setError(null);
       const response = await fetch(getURL, options);
 
-      if (!response) throw new error('Request Faild!');
+      if (!response.ok) throw new error('Request failed!');
 
       const data = await response.json();
       // console.log(data);
 
       applyData(data);
     } catch (error) {
-      // console.error('error: ' + error);
+      // console.error('useFetch: ' + error);
       setError(error || 'Something went wrong!');
     }
     setIsLoading(false);
