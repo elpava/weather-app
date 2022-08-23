@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import moment from 'moment';
 
-import NewWeatherContext from '../../store/new-context';
+import NewWeatherContext from '../../store/weather-context';
 import { weatherCodes } from '../../store/weather-code';
 
 import Image from '../ui/Image';
@@ -10,7 +10,7 @@ export default function FullDayWrapper() {
   const { data: weatherData } = useContext(NewWeatherContext);
   const { data } = weatherData;
 
-  if (!data) return <h3 className="alternate-text">24 Hours later...</h3>;
+  if (!data) return <span className="skeleton-loader second"></span>;
 
   const { intervals } = data.timelines[1];
 

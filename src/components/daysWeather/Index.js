@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import NewWeatherContext from '../../store/new-context';
+import NewWeatherContext from '../../store/weather-context';
 
 import SelectedDay from './SelectedDay';
 import Days from './Days';
@@ -10,7 +10,7 @@ export default function DaysWrapper() {
   const { data } = weatherData;
   const [selectedItem, setSelcetedItem] = useState(0);
 
-  if (!data) return <h3 className="alternate-text">Today & 5 Days Later...</h3>;
+  if (!data) return <span className="skeleton-loader first"></span>;
 
   const { intervals } = data.timelines[0];
   const selectedWeatherData = intervals[selectedItem];
